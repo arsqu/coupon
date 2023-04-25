@@ -1,31 +1,33 @@
-import React from 'react';
-import TweenOne from 'rc-tween-one';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
-import { Tabs, Row, Col } from 'antd';
-import { Icon } from '@ant-design/compatible';
-import { getChildrenToRender } from './utils';
+import React from 'react'
+import TweenOne from 'rc-tween-one'
+import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
+import { Tabs, Row, Col } from 'antd'
+// import { Icon } from '@ant-design/compatible'
+import { Icon } from "antd"
+import { getChildrenToRender } from './utils'
+import guide from './image/guide.png'
 
-const TabPane = Tabs.TabPane;
+const TabPane = Tabs.TabPane
 
 class Content7 extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       current: 1,
-    };
+    }
   }
 
   onChange = (key) => {
-    this.setState({ current: parseFloat(key) });
-  };
+    this.setState({ current: parseFloat(key) })
+  }
 
   getBlockChildren = (item, i) => {
-    const { tag, content } = item;
-    const { text, img } = content;
-    const textChildren = text.children;
-    const { icon } = tag;
-    const iconChildren = icon.children;
-    const tagText = tag.text;
+    const { tag, content } = item
+    const { text, img } = content
+    const textChildren = text.children
+    const { icon } = tag
+    const iconChildren = icon.children
+    const tagText = tag.text
     return (
       <TabPane
         key={i + 1}
@@ -58,21 +60,21 @@ class Content7 extends React.Component {
                 {textChildren}
               </Col>
               <Col className={img.className} xs={img.xs} md={img.md}>
-                <img src={img.children} width="100%" alt="img" />
+                <img src={guide} width="100%" alt="img" />
               </Col>
             </Row>
           )}
         </TweenOne.TweenOneGroup>
       </TabPane>
-    );
-  };
+    )
+  }
 
   render() {
-    const { ...props } = this.props;
-    const { dataSource } = props;
-    delete props.dataSource;
-    delete props.isMobile;
-    const tabsChildren = dataSource.block.children.map(this.getBlockChildren);
+    const { ...props } = this.props
+    const { dataSource } = props
+    delete props.dataSource
+    delete props.isMobile
+    const tabsChildren = dataSource.block.children.map(this.getBlockChildren)
     return (
       <div {...props} {...dataSource.wrapper}>
         <div {...dataSource.page}>
@@ -104,8 +106,8 @@ class Content7 extends React.Component {
           </OverPack>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Content7;
+export default Content7

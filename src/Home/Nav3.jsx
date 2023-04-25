@@ -1,31 +1,31 @@
-import React from 'react';
-import TweenOne from 'rc-tween-one';
-import { Menu } from 'antd';
-import { getChildrenToRender } from './utils';
+import React from 'react'
+import TweenOne from 'rc-tween-one'
+import { Menu } from 'antd'
+import { getChildrenToRender } from './utils'
 
-const { Item, SubMenu } = Menu;
+const { Item, SubMenu } = Menu
 
 class Header3 extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       phoneOpen: undefined,
-    };
+    }
   }
 
   phoneClick = () => {
-    const phoneOpen = !this.state.phoneOpen;
+    const phoneOpen = !this.state.phoneOpen
     this.setState({
       phoneOpen,
-    });
-  };
+    })
+  }
 
   render() {
-    const { dataSource, isMobile, ...props } = this.props;
-    const { phoneOpen } = this.state;
-    const navData = dataSource.Menu.children;
+    const { dataSource, isMobile, ...props } = this.props
+    const { phoneOpen } = this.state
+    const navData = dataSource.Menu.children
     const navChildren = navData.map((item) => {
-      const { children: a, subItem, ...itemProps } = item;
+      const { children: a, subItem, ...itemProps } = item
       if (subItem) {
         return (
           <SubMenu
@@ -42,7 +42,7 @@ class Header3 extends React.Component {
             popupClassName="header3-item-child"
           >
             {subItem.map(($item, ii) => {
-              const { children: childItem } = $item;
+              const { children: childItem } = $item
               const child = childItem.href ? (
                 <a {...childItem}>
                   {childItem.children.map(getChildrenToRender)}
@@ -51,15 +51,15 @@ class Header3 extends React.Component {
                 <div {...childItem}>
                   {childItem.children.map(getChildrenToRender)}
                 </div>
-              );
+              )
               return (
                 <Item key={$item.name || ii.toString()} {...$item}>
                   {child}
                 </Item>
-              );
+              )
             })}
           </SubMenu>
-        );
+        )
       }
       return (
         <Item key={item.name} {...itemProps}>
@@ -67,13 +67,13 @@ class Header3 extends React.Component {
             {a.children.map(getChildrenToRender)}
           </a>
         </Item>
-      );
-    });
-    const moment = phoneOpen === undefined ? 300 : null;
+      )
+    })
+    const moment = phoneOpen === undefined ? 300 : null
     return (
       <TweenOne
         component="header"
-        animation={{ opacity: 0, type: 'from' }}
+        // animation={{ opacity: 0, type: 'from' }}
         {...dataSource.wrapper}
         {...props}
       >
@@ -82,7 +82,7 @@ class Header3 extends React.Component {
           className={`${dataSource.page.className}${phoneOpen ? ' open' : ''}`}
         >
           <TweenOne
-            animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
+            // animation={{ x: -30, type: 'from', ease: 'easeOutQuad' }}
             {...dataSource.logo}
           >
             <img width="100%" src={dataSource.logo.children} alt="img" />
@@ -91,7 +91,7 @@ class Header3 extends React.Component {
             <div
               {...dataSource.mobileMenu}
               onClick={() => {
-                this.phoneClick();
+                this.phoneClick()
               }}
             >
               <em />
@@ -101,21 +101,21 @@ class Header3 extends React.Component {
           )}
           <TweenOne
             {...dataSource.Menu}
-            animation={
-              isMobile
-                ? {
-                    x: 0,
-                    height: 0,
-                    duration: 300,
-                    onComplete: (e) => {
-                      if (this.state.phoneOpen) {
-                        e.target.style.height = 'auto';
-                      }
-                    },
-                    ease: 'easeInOutQuad',
-                  }
-                : null
-            }
+            // animation={
+            //   isMobile
+            //     ? {
+            //         x: 0,
+            //         height: 0,
+            //         duration: 300,
+            //         onComplete: (e) => {
+            //           if (this.state.phoneOpen) {
+            //             e.target.style.height = 'auto'
+            //           }
+            //         },
+            //         ease: 'easeInOutQuad',
+            //       }
+            //     : null
+            // }
             moment={moment}
             reverse={!!phoneOpen}
           >
@@ -129,8 +129,8 @@ class Header3 extends React.Component {
           </TweenOne>
         </div>
       </TweenOne>
-    );
+    )
   }
 }
 
-export default Header3;
+export default Header3

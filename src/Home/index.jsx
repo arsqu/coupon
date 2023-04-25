@@ -1,48 +1,62 @@
 /* eslint no-undef: 0 */
 /* eslint arrow-parens: 0 */
-import React from 'react';
-import { enquireScreen } from 'enquire-js';
+import React from 'react'
+import { enquireScreen } from 'enquire-js'
 
-import Nav3 from './Nav3';
-import Banner1 from './Banner1';
-import Content0 from './Content0';
-import Content5 from './Content5';
-import Content3 from './Content3';
-import Feature5 from './Feature5';
-import Footer1 from './Footer1';
+import Nav3 from './Nav3'
+import Banner5 from './Banner5'
+import Feature6 from './Feature6'
+import Feature5 from './Feature5'
+import Feature8 from './Feature8'
+import Content9 from './Content9'
+import Content12 from './Content12'
+import Footer2 from './Footer2'
 
 import {
   Nav30DataSource,
-  Banner10DataSource,
-  Content00DataSource,
-  Content50DataSource,
-  Content30DataSource,
+  Banner50DataSource,
+  Feature60DataSource,
   Feature50DataSource,
-  Footer10DataSource,
-} from './data.source';
-import './less/antMotionStyle.less';
+  Feature80DataSource,
+  Content90DataSource,
+  Content120DataSource,
+  Footer20DataSource,
+} from './data.source'
+import './less/antMotionStyle.less'
+// import './less/common.less'
+// import './less/custom.less'
+// import './less/content.less'
+// import './less/nav3.less'
+// import './less/banner5.less'
+// import './less/feature6.less'
+// import './less/feature5.less'
+// import './less/feature8.less'
+// import './less/content9.less'
+// import './less/content12.less'
+// import './less/footer2.less'
+// import './less/edit.less'
 
-let isMobile;
+let isMobile
 enquireScreen((b) => {
-  isMobile = b;
-});
+  isMobile = b
+})
 
-const { location } = window;
+const { location = {} } = typeof window !== 'undefined' ? window : {}
 
 export default class Home extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       isMobile,
       show: !location.port, // 如果不是 dva 2.0 请删除
-    };
+    }
   }
 
   componentDidMount() {
     // 适配手机屏幕;
     enquireScreen((b) => {
-      this.setState({ isMobile: !!b });
-    });
+      this.setState({ isMobile: !!b })
+    })
     // dva 2.0 样式在组件渲染之后动态加载，导致滚动组件不生效；线上不影响；
     /* 如果不是 dva 2.0 请删除 start */
     if (location.port) {
@@ -50,8 +64,8 @@ export default class Home extends React.Component {
       setTimeout(() => {
         this.setState({
           show: true,
-        });
-      }, 500);
+        })
+      }, 500)
     }
     /* 如果不是 dva 2.0 请删除 end */
   }
@@ -64,28 +78,16 @@ export default class Home extends React.Component {
         dataSource={Nav30DataSource}
         isMobile={this.state.isMobile}
       />,
-      <Banner1
-        id="Banner1_0"
-        key="Banner1_0"
-        dataSource={Banner10DataSource}
+      <Banner5
+        id="Banner5_0"
+        key="Banner5_0"
+        dataSource={Banner50DataSource}
         isMobile={this.state.isMobile}
       />,
-      <Content0
-        id="Content0_0"
-        key="Content0_0"
-        dataSource={Content00DataSource}
-        isMobile={this.state.isMobile}
-      />,
-      <Content5
-        id="Content5_0"
-        key="Content5_0"
-        dataSource={Content50DataSource}
-        isMobile={this.state.isMobile}
-      />,
-      <Content3
-        id="Content3_0"
-        key="Content3_0"
-        dataSource={Content30DataSource}
+      <Feature6
+        id="Feature6_0"
+        key="Feature6_0"
+        dataSource={Feature60DataSource}
         isMobile={this.state.isMobile}
       />,
       <Feature5
@@ -94,24 +96,42 @@ export default class Home extends React.Component {
         dataSource={Feature50DataSource}
         isMobile={this.state.isMobile}
       />,
-      <Footer1
-        id="Footer1_0"
-        key="Footer1_0"
-        dataSource={Footer10DataSource}
+      <Feature8
+        id="Feature8_0"
+        key="Feature8_0"
+        dataSource={Feature80DataSource}
         isMobile={this.state.isMobile}
       />,
-    ];
+      <Content9
+        id="Content9_0"
+        key="Content9_0"
+        dataSource={Content90DataSource}
+        isMobile={this.state.isMobile}
+      />,
+      <Content12
+        id="Content12_0"
+        key="Content12_0"
+        dataSource={Content120DataSource}
+        isMobile={this.state.isMobile}
+      />,
+      <Footer2
+        id="Footer2_0"
+        key="Footer2_0"
+        dataSource={Footer20DataSource}
+        isMobile={this.state.isMobile}
+      />,
+    ]
     return (
       <div
         className="templates-wrapper"
         ref={(d) => {
-          this.dom = d;
+          this.dom = d
         }}
       >
         {/* 如果不是 dva 2.0 替换成 {children} start */}
         {this.state.show && children}
         {/* 如果不是 dva 2.0 替换成 {children} end */}
       </div>
-    );
+    )
   }
 }

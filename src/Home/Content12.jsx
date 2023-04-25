@@ -1,32 +1,29 @@
-import React from 'react';
-import { Row, Col } from 'antd';
-import { TweenOneGroup } from 'rc-tween-one';
-import OverPack from 'rc-scroll-anim/lib/ScrollOverPack';
-import { getChildrenToRender } from './utils';
+import React from 'react'
+import { Row, Col } from 'antd'
+import { TweenOneGroup } from 'rc-tween-one'
+import OverPack from 'rc-scroll-anim/lib/ScrollOverPack'
+import { getChildrenToRender } from './utils'
 
-class Content5 extends React.PureComponent {
+class Content12 extends React.PureComponent {
   getChildrenToRender = (data) =>
     data.map((item) => {
       return (
         <Col key={item.name} {...item}>
           <div {...item.children.wrapper}>
             <span {...item.children.img}>
-              <img src={item.children.img.children} height="100%" alt="img" />
+              <img src={item.children.img.children} alt="img" />
             </span>
-            <p {...item.children.content}>{item.children.content.children}</p>
           </div>
         </Col>
-      );
-    });
+      )
+    })
 
   render() {
-    const { ...props } = this.props;
-    const { dataSource } = props;
-    delete props.dataSource;
-    delete props.isMobile;
-    const childrenToRender = this.getChildrenToRender(
-      dataSource.block.children
-    );
+    const { ...props } = this.props
+    const { dataSource } = props
+    delete props.dataSource
+    delete props.isMobile
+    const childrenToRender = this.getChildrenToRender(dataSource.block.children)
     return (
       <div {...props} {...dataSource.wrapper}>
         <div {...dataSource.page}>
@@ -44,9 +41,9 @@ class Content5 extends React.PureComponent {
                 y: '+=30',
                 opacity: 0,
                 type: 'from',
-                ease: 'easeInOutQuad',
+                ease: 'easeOutQuad',
               }}
-              leave={{ y: '+=30', opacity: 0, ease: 'easeInOutQuad' }}
+              leave={{ y: '+=30', opacity: 0, ease: 'easeOutQuad' }}
               {...dataSource.block}
             >
               {childrenToRender}
@@ -54,8 +51,8 @@ class Content5 extends React.PureComponent {
           </OverPack>
         </div>
       </div>
-    );
+    )
   }
 }
 
-export default Content5;
+export default Content12
